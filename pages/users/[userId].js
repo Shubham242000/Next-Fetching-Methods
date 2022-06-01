@@ -12,7 +12,7 @@ const SingleTemp = ({ data }) => {
       <p>
         Uses getStaticPaths with Fallback as True, so this page was not
         generated at build time, rather it was pre-rendered on the first request
-        to the server, and the cached.
+        to the server, and then cached.
       </p>
       <p> {data.id} </p>
       <p> {data.name} </p>

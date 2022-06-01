@@ -2,8 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/crypto": "pages/crypto.js",
-  "/news": "pages/news.js",
-  "/users": "pages/users.js",
   "/users/[userId]": "pages/users/[userId].js"
 }
