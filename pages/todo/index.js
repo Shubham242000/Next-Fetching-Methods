@@ -1,57 +1,14 @@
-import { useEffect, useState } from "react";
 import { Context } from "../../context/Context";
 import { useContext } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect } from "react";
 const todo = () => {
-  // const [comment, setComment] = useState("");
-  // const [comments, setComments] = useState([]);
-  // const [id, setId] = useState();
-  // const [text, setText] = useState("");
-
-  // useEffect(() => {
-  //   loadComment();
-  // }, []);
-
-  // const updateComment = async (id) => {
-  //   const res = await fetch(`/api/comments/${id}`, {
-  //     method: "PUT",
-  //     body: JSON.stringify({ text }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const data = await res.json();
-  //   console.log(data);
-  //   loadComment();
-  //   setId("");
-  // };
-
-  // const loadComment = async () => {
-  //   const res = await fetch("/api/comments");
-  //   const data = await res.json();
-  //   setComments(data);
-  // };
-  // const addComment = async () => {
-  //   const res = await fetch("/api/comments", {
-  //     method: "POST",
-  //     body: JSON.stringify({ comment }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   const data = await res.json();
-  //   console.log(data);
-  //   loadComment();
-  //   setComment("");
-  // };
-
-  // const deleteComment = async (id) => {
-  //   const res = await fetch(`/api/comments/${id}`, {
-  //     method: "DELETE",
-  //   });
-  //   const data = await res.json();
-  //   console.log(data);
-  //   loadComment();
-  // };
+  const { data, status } = useSession();
+  useEffect(() => {
+    if (status === "unauthenticated") signIn();
+  }, [status]);
+  console.log(data);
+  console.log(status);
   const {
     comment,
     comments,
@@ -67,11 +24,27 @@ const todo = () => {
     loadComment,
   } = useContext(Context);
 
+  if (status === "loading") {
+    return <h3>Loading...</h3>;
+  }
+
   return (
     <div>
+      <div style={{ margin: "20px 0" }}>
+        <button
+          style={{ fontSize: "18px" }}
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Sign Out
+        </button>
+      </div>
+
       <p>
         Uses Next API routes to send request and get response and Context Api to
-        manage all the state and functions
+        manage all the state and functions, next-auth for client side
+        authentication.
       </p>
       <h1>Todo </h1>
       <input

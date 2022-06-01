@@ -6,7 +6,7 @@ const Home = () => {
       <hr />
       <h4>
         An application that depicts various fetching method that NextJs
-        provides, NextJs APIs, Context API etc
+        provides, NextJs APIs, Context API, Authentication using next-auth etc
       </h4>
     </div>
   );
